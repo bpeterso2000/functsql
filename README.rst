@@ -12,9 +12,10 @@ Inspired by PyToolz: http://toolz.rtfd.org
 
 -----------------------------------------------------------------------------
 
-Reference: http://www.itl.nist.gov/div897/ctg/dm/sql_examples.htm
 Tests based on NIST SQL examples, see 'tests/nist_tests.py' module for working
 examples of functsql's syntax.
+
+Reference: http://www.itl.nist.gov/div897/ctg/dm/sql_examples.htm
 
 * The 1st block in the following examples is standard SQL syntax
 * The 2nd block is the equivalent Python functsql syntax
