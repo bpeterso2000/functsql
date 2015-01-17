@@ -8,8 +8,7 @@ An experiment in loosely emulating SQL-style syntax while keeping it:
 * lazy
 * readible
 
-Inspiration: PyToolz
-.. _PyToolz: http://toolz.rtfd.org
+Inspired by PyToolz: http://toolz.rtfd.org
 
 -----------------------------------------------------------------------------
 
