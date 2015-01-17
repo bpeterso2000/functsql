@@ -1,9 +1,6 @@
 functsql
 ========
-A pure Python, bare metal, SQL-style functional toolkit
-
-An experiment in loosely emulating SQL-style syntax with an effort to 
-following guidelines:
+An experiment in loosely emulating SQL-style syntax while keeping it:
 
 * simple
 * stateless
@@ -11,7 +8,8 @@ following guidelines:
 * lazy
 * readible
 
-Inspiration for project:  `PyToolz library `Python <http://toolz.rtfd.org>`_
+Inspiration: PyToolz
+.. _PyToolz: http://toolz.rtfd.org
 
 -----------------------------------------------------------------------------
 
