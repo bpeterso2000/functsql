@@ -24,7 +24,7 @@ examples of functsql's syntax.
 
 -----------------------------------------------------------------------------
 
-1.::
+Example 1::
 
     SELECT * FROM STATION
     WHERE LAT_N > 39.7;
@@ -35,7 +35,7 @@ examples of functsql's syntax.
 
 -----------------------------------------------------------------------------
 
-2.::
+Example 2::
 
     SELECT ID, CITY, STATE FROM STATION;
 
@@ -45,7 +45,7 @@ examples of functsql's syntax.
 
 -----------------------------------------------------------------------------
 
-3.::
+Example 3::
 
     SELECT ID, CITY, STATE FROM STATION
     WHERE LAT_N > 39.7;
@@ -58,7 +58,7 @@ examples of functsql's syntax.
 
 -----------------------------------------------------------------------------
 
-4.::
+Example 4::
 
     SELECT * FROM STATION, STATS
     WHERE STATION.ID = STATS.ID;
@@ -69,7 +69,7 @@ examples of functsql's syntax.
 
 -----------------------------------------------------------------------------
 
-5.::
+Example 5::
 
     SELECT MONTH, ID, RAIN_I, TEMP_F
     FROM STATS 
@@ -83,7 +83,7 @@ examples of functsql's syntax.
 
 -----------------------------------------------------------------------------
 
-6.::
+Example 6::
 
     SELECT LAT_N, CITY, TEMP_F
     FROM STATS, STATION
@@ -101,7 +101,7 @@ examples of functsql's syntax.
 
 -----------------------------------------------------------------------------
 
-7.::
+Example 7::
 
     SELECT MAX(TEMP_F), MIN(TEMP_F), AVG(RAIN_I), ID 
     FROM STATS 
@@ -117,7 +117,7 @@ examples of functsql's syntax.
 
 -----------------------------------------------------------------------------
 
-8.::
+Example 8::
 
     SELECT * FROM STATION 
     WHERE 50 < (SELECT AVG(TEMP_F) FROM STATS 
@@ -148,7 +148,7 @@ examples of functsql's syntax.
 
 -----------------------------------------------------------------------------
 
-9.::
+Example 9::
 
     UPDATE STATS SET RAIN_I = RAIN_I + 0.01;
 
@@ -158,7 +158,7 @@ examples of functsql's syntax.
 
 -----------------------------------------------------------------------------
 
-10.::
+Example 10::
 
     UPDATE STATS SET TEMP_F = 74.9 
     WHERE ID = 44 
@@ -172,11 +172,11 @@ examples of functsql's syntax.
 
 -----------------------------------------------------------------------------
 
-11.:
+Example 11::
 
-    DELETE FROM STATS 
-    WHERE MONTH = 7 
-    OR ID IN (SELECT ID FROM STATION 
+    DELETE FROM STATS
+    WHERE MONTH = 7
+    OR ID IN (SELECT ID FROM STATION
     WHERE LONG_W < 90);
 
     ...
@@ -192,11 +192,11 @@ examples of functsql's syntax.
             ('ID', IN, stations),
             or_
         ],
-        STATS, rpn=True)
+    STATS, rpn=True)
 
 -----------------------------------------------------------------------------
 
-12.::
+Example 12::
 
     --- part a ---
 
@@ -223,14 +223,14 @@ examples of functsql's syntax.
 
     ...
 
-    result = QUERY(self.STATS, METRIC_STATS,
-             WHERE([('TEMP_C', lt, 0), ('MONTH', eq, 1)]),
-             ORDER_BY(('RAIN_C')))
+    QUERY(self.STATS, METRIC_STATS,
+    WHERE([('TEMP_C', lt, 0), ('MONTH', eq, 1)]),
+    ORDER_BY(('RAIN_C')))
 
 
 -----------------------------------------------------------------------------
 
-13.::
+Example 13::
 
     #include<stdio.h> 
     #include<string.h> 
