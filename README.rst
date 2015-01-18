@@ -53,7 +53,7 @@ Example 3::
     ...
 
     QUERY(STATION,
-    WHERE([('LAT_N', gt, 39.7)]),
+    WHERE(('LAT_N', gt, 39.7)),
     SELECT(('ID', 'CITY', 'STATE')))
 
 -----------------------------------------------------------------------------
@@ -95,7 +95,7 @@ Example 6::
 
     QUERY(STATION,
     JOIN((STATS, 'ID')),
-    WHERE([('MONTH', eq, 7)]),
+    WHERE(('MONTH', eq, 7)),
     SELECT(('LAT_N', 'CITY', 'TEMP_F')),
     ORDER_BY(('TEMP_F',)))
 
@@ -127,13 +127,13 @@ Example 8::
 
     avg_temp_gt_50 = \
         QUERY(STATS,
-        REDUCE_BY('ID', [(avg, 'TEMP_F')]),
-        WHERE([('avg:TEMP_F', gt, 50)]),
+        REDUCE_BY('ID', (avg, 'TEMP_F')),
+        WHERE(('avg:TEMP_F', gt, 50)),
         SELECT_VALUE('ID'),
         AS(list))
 
     result = \
-        WHERE([('ID', IN, avg_temp_gt_50)], STATION)
+        WHERE(('ID', IN, avg_temp_gt_50), STATION)
 
 -----------------------------------------------------------------------------
 
@@ -143,7 +143,7 @@ Example 9::
 
     ...
 
-    UPDATE(('RAIN_I', lambda x: round(x + 0.01, 2)), STATS)
+    UPDATE(('RAIN_I', lambda x: x + 0.01), STATS)
 
 -----------------------------------------------------------------------------
 
@@ -172,16 +172,13 @@ Example 11::
 
     stations = \
         QUERY(STATION,
-        WHERE([('LONG_W', lt, 90)]),
+        WHERE(('LONG_W', lt, 90)),
         SELECT_VALUE('ID'), AS(list))
 
     result = \
         DELETE_WHERE([
-            ('MONTH', eq, 7),
-            ('ID', IN, stations),
-            or_
-        ],
-    STATS, rpn=True)
+            ('MONTH', eq, 7), ('ID', IN, stations), or_
+        ], STATS, rpn=True)
 
 -----------------------------------------------------------------------------
 
@@ -213,7 +210,7 @@ Example 12::
     ...
 
     QUERY(self.STATS, METRIC_STATS,
-    WHERE([('TEMP_C', lt, 0), ('MONTH', eq, 1)]),
+    WHERE((('TEMP_C', lt, 0), ('MONTH', eq, 1))),
     ORDER_BY(('RAIN_C')))
 
 
@@ -273,7 +270,7 @@ Example 13::
             print('And here is the weather data:')
             weather = QUERY(STATS, WHERE(('ID', eq, station)), ORDER_BY('MONTH')
             for month in weather:
-                datafmt.format(*get(['MONTH', 'TEMP_F', 'RAIN_I']))
+                datafmt.format(*get(('MONTH', 'TEMP_F', 'RAIN_I')))
             print('end of list')
         else:
             print('There is no station for city {}'.format(city)
