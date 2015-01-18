@@ -1,24 +1,26 @@
 functsql
 ========
-An experiment in loosely emulating SQL-style syntax while keeping it:
+An experiment in loosely emulating SQL-style syntax using pure Python
+functional programming:
 
 * simple
 * stateless
 * composable
 * lazy
-* readible
+* readable
 
 Inspired by PyToolz: http://toolz.rtfd.org
 
 -----------------------------------------------------------------------------
 
-Tests based on NIST SQL examples, see 'tests/nist_tests.py' module for working
-examples of functsql's syntax.
+Current tests are based on the NIST SQL Project.
 
 Reference: http://www.itl.nist.gov/div897/ctg/dm/sql_examples.htm
 
-* The 1st block in the following examples is standard SQL syntax
-* The 2nd block is the equivalent Python functsql syntax
+See the 'tests/nist_tests.py' module for working examples of functsql's syntax.
+
+* The 1st block in the following examples is standard SQL syntax.
+* The 2nd block is the equivalent Python functsql syntax.
 
 -----------------------------------------------------------------------------
 
