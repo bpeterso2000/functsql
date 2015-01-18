@@ -1,4 +1,4 @@
-from pytoolz import curry, drop, take
+from pytoolz import curry, drop, pipe, take
 
 
 @curry

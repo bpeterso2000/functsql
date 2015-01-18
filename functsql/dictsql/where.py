@@ -11,8 +11,8 @@ le = curry(operator.le)
 lt = curry(operator.lt)
 ne = curry(operator.ne)
 
-
 logic_ops = (or_, and_, xor, not_)
+
 
 @curry
 def IN(a, b):
@@ -48,4 +48,3 @@ def where_stack(conditions, d):
     for op in conditions:
         s.append(op(s.pop(), s.pop()) if op in logic_ops else op(d))
     return s.pop()
-

@@ -1,8 +1,7 @@
 import collections
 import operator
 
-from toolz.curried import (complement, curry, first, get, keyfilter, pipe,
-    pluck, keymap)
+from toolz.curried import complement, curry, keyfilter, pipe, pluck, keymap
 
 eq = curry(operator.eq)
 ne = curry(operator.ne)
@@ -58,7 +57,7 @@ def _keynames_n_aliases(keys):
 
 @curry
 def dropkey(key, seq):
-    return map(keyfilter(not_eq(key)), seq)
+    return map(keyfilter(ne(key)), seq)
 
 
 @curry
