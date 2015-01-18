@@ -132,8 +132,7 @@ Example 8::
         SELECT_VALUE('ID'),
         AS(list))
 
-    result = \
-        WHERE(('ID', IN, avg_temp_gt_50), STATION)
+    WHERE(('ID', IN, avg_temp_gt_50), STATION)
 
 -----------------------------------------------------------------------------
 
@@ -175,10 +174,9 @@ Example 11::
         WHERE(('LONG_W', lt, 90)),
         SELECT_VALUE('ID'), AS(list))
 
-    result = \
-        DELETE_WHERE([
-            ('MONTH', eq, 7), ('ID', IN, stations), or_
-        ], STATS, rpn=True)
+    DELETE_WHERE([
+        ('MONTH', eq, 7), ('ID', IN, stations), or_
+    ], STATS, rpn=True)
 
 -----------------------------------------------------------------------------
 
