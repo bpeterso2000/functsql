@@ -1,7 +1,4 @@
-import sys
-
 from toolz.curried import cons, curry, groupby, pipe, pluck
-
 
 GROUP_BY = groupby
 
@@ -13,8 +10,8 @@ def REDUCE_BY(key, reducers, seq):
 
 @curry
 def reducegroups(key, reducers, seq, keyfmt='{fname}:{key}'):
-    keys = [keyfmt.format(fname=fn.__name__, key=key)
-            for fn, key in tuple(reducers)]
+    keys = [keyfmt.format(fname=fn.__name__, key=k)
+            for fn, k in tuple(reducers)]
     for group, values in seq.items():
         reduced_vals = (pluckreduce(f, k, values) for f, k in reducers)
         yield dict(cons((key, group), zip(keys, reduced_vals)))

@@ -1,6 +1,6 @@
 from toolz import curry, juxt
 
-from .where import *
+from .where import get_conditions
 
 
 @curry
