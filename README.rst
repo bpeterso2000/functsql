@@ -125,23 +125,12 @@ Example 8::
 
     ...
 
-    """
-    avg is not built into Python, however the statistics.mean function is
-    included in Python 3.4+
-    """
-
-    def avg(seq, digits=2):
-        if iter(seq) is seq:
-            seq = list(seq)
-        return round(sum(seq) / len(seq), digits)
-
-
     avg_temp_gt_50 = \
         QUERY(STATS,
         REDUCE_BY('ID', [(avg, 'TEMP_F')]),
         WHERE([('avg:TEMP_F', gt, 50)]),
         SELECT_VALUE('ID'),
-        AS_LIST)
+        AS(list))
 
     result = \
         WHERE([('ID', IN, avg_temp_gt_50)], STATION)
@@ -184,7 +173,7 @@ Example 11::
     stations = \
         QUERY(STATION,
         WHERE([('LONG_W', lt, 90)]),
-        SELECT_VALUE('ID'), AS_LIST)
+        SELECT_VALUE('ID'), AS(list))
 
     result = \
         DELETE_WHERE([

@@ -4,16 +4,14 @@ Reference docs/examples.rst for test numbers.
 """
 import unittest
 
-from toolz import identity
-
 from functsql.query import *
 from functsql.dictsql import *
+
 
 def avg(seq, digits=2):
     if iter(seq) is seq:
         seq = list(seq)
     return round(sum(seq) / len(seq), digits)
-
 
 
 class NISTtests(unittest.TestCase):
@@ -163,7 +161,6 @@ class NISTtests(unittest.TestCase):
     def test_12(self):
         degC = lambda x: round((x - 32) * 5/9, 2)
         cm = lambda x: round(x * 0.3937, 2)
-        #result = QUERY(self.STATS, 
         METRIC_STATS = VIEW((
                  UPDATE(('TEMP_F', degC, 'TEMP_C')),
                  UPDATE(('RAIN_I', cm, 'RAIN_C')),
@@ -180,8 +177,6 @@ class NISTtests(unittest.TestCase):
         result = QUERY(self.STATS, METRIC_STATS,
                  WHERE([('TEMP_C', lt, 0), ('MONTH', eq, 1)]),
                  ORDER_BY(('RAIN_C')))
-        reulst = list(result)
-        print(result)
         self.assertEqual(tuple(result), (
             {'TEMP_C': -2.61, 'MONTH': 1, 'ID': 44, 'RAIN_C': 0.07},
             {'TEMP_C': -14.06, 'MONTH': 1, 'ID': 66, 'RAIN_C': 0.83}
