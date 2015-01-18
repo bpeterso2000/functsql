@@ -117,8 +117,8 @@ class NISTtests(unittest.TestCase):
              QUERY(self.STATS,
              REDUCE_BY('ID', [(avg, 'TEMP_F')]),
              WHERE([('avg:TEMP_F', gt, 50)]),
-             SELECT_VALUE('ID'),
-             AS_LIST)
+             SELECT_VALUES('ID'),
+             AS(list))
         result = WHERE([('ID', IN, avg_temp_gt_50)], self.STATION)
         self.assertEqual(tuple(result), (
             {'ID': 13, 'STATE': 'AZ', 'LAT_N': 33, 'CITY': 'Phoenix', 'LONG_W': 112},
@@ -152,7 +152,7 @@ class NISTtests(unittest.TestCase):
     def test_11(self):
         stations = QUERY(self.STATION,
                    WHERE([('LONG_W', lt, 90)]),
-                   SELECT_VALUE('ID'), AS_LIST)
+                   SELECT_VALUES('ID'), AS(list))
         result = DELETE_WHERE([('MONTH', eq, 7), ('ID', IN, stations), or_],
                  self.STATS, rpn=True)
         self.assertEqual(tuple(result), (
@@ -193,13 +193,13 @@ class NISTtests(unittest.TestCase):
             datafmt = ('month = {}, temperature = {}, rainfall = {}')
             station = QUERY(STATION,
                       WHERE([('CITY', eq, city)]),
-                      SELECT_VALUE('ID'), AS_LIST)[0]
+                      SELECT_VALUES('ID'), AS(list))[0]
             if station:
                 output.append('For the city {}, Station ID is {}'.format(city, station))
                 output.append('And here is the weather data:')
                 weather = QUERY(STATS,
                           WHERE([('ID', eq, station)]),
-                          ORDER_BY('MONTH'), AS_LIST)
+                          ORDER_BY('MONTH'), AS(list))
                 for month in weather:
                     output.append(datafmt.format(
                                  *get(['MONTH', 'TEMP_F', 'RAIN_I'], month)))
