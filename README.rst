@@ -31,7 +31,7 @@ Example 1::
 
     ...
 
-    WHERE([('LAT_N', gt, 39.7)], STATION)
+    WHERE(('LAT_N', gt, 39.7)), STATION)
 
 -----------------------------------------------------------------------------
 
@@ -174,9 +174,9 @@ Example 11::
         WHERE(('LONG_W', lt, 90)),
         SELECT_VALUE('ID'), AS(list))
 
-    DELETE_WHERE([
+    DELETE_WHERE((
         ('MONTH', eq, 7), ('ID', IN, stations), or_
-    ], STATS, rpn=True)
+    ), STATS, rpn=True)
 
 -----------------------------------------------------------------------------
 
